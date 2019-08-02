@@ -11,6 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  version: '1.0'
 
 steps:
 - script: dotnet restore
@@ -48,11 +49,13 @@ steps:
 
 # publish to a NuGet feed
 # do this near the end of your pipeline in most cases
-- script: dotnet pack /p:PackageVersion=$(version)  # define version variable elsewhere in your pipeline
+- script: dotnet pack /p:PackageVersion=$(version)
 - task: NuGetCommand@2
   inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: '<Name of the NuGet service connection>'
-    versioningScheme: byEnvVar
-    versionEnvVar: version
+    command: pack
+    # packagesToPack: The path to the files that describe the package you want to create.
+    packagesToPack: '**/*.csproj'
+    # configuration: The default is $(BuildConfiguration) unless you want to always build either Debug or Release packages, 
+    # or unless you have a custom build configuration.
+    # packDestination: The default is $(Build.ArtifactStagingDirectory). If you set this, make a note of the location so you can use it in the 
+    # publish task.
