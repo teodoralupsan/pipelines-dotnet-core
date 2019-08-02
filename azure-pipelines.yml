@@ -49,7 +49,7 @@ steps:
 
 # publish to a NuGet feed
 # do this near the end of your pipeline in most cases
-- script: dotnet pack /p:PackageVersion=$(version)
+# - script: dotnet pack /p:PackageVersion=$(version)
 - task: NuGetCommand@2
   inputs:
     command: pack
