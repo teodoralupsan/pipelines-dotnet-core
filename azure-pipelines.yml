@@ -14,5 +14,6 @@ variables:
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
-- script: dotnet restore
   displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet restore
+  displayName: 'dotnet restore NuGet'
