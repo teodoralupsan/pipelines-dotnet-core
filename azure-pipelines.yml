@@ -29,15 +29,6 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration Release' # Update this to match your need
 
-#You can add any custom dornet command. Ex: install and use a .NET global tool dotnetsay
-- task: DotNetCoreCLI@2
-  displayName: 'Install dotnetsay'
-  inputs:
-    command: custom
-    projects: '**/*.csproj'
-    custom: tool
-    arguments: 'install -g dotnetsay'
-
 # ...
 # do this after other tasks such as building
 - task: DotNetCoreCLI@2
